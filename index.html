@@ -144,5 +144,33 @@
     </a>
   </main>
   <div class="fill" aria-hidden="true"></div>
+  <!-- นับยอด: เปิดหน้าเว็บ / กด Google Calendar / Apple Calendar / Instagram → บันทึกลง Google Sheet ผ่าน Apps Script -->
+  <script>
+    (function () {
+      // ใส่ลิงก์ Web app ของ Apps Script (ลงท้ายด้วย /exec)
+      var LOG_URL = 'PASTE_YOUR_EXEC_URL_HERE';
+      if (LOG_URL.indexOf('/exec') < 0) return;
+
+      // ?src=ig, ?src=poster … ใช้แยกยอดตามช่องทาง (ถ้าไม่มีจะเป็น direct)
+      var src = 'direct';
+      try { src = (new URLSearchParams(location.search).get('src') || 'direct').slice(0, 40); } catch (e) {}
+
+      function track(action) {
+        var url = LOG_URL + '?action=' + action + '&src=' + encodeURIComponent(src) + '&t=' + Date.now();
+        try {
+          // keepalive: ส่งต่อให้จบแม้ผู้ใช้จะถูกพาออกจากหน้านี้ทันที
+          fetch(url, { method: 'GET', mode: 'no-cors', credentials: 'omit', keepalive: true });
+        } catch (e) {
+          new Image().src = url;
+        }
+      }
+
+      track('view');
+      [['.btn-google', 'google'], ['.btn-apple', 'apple'], ['.btn-instagram', 'ig']].forEach(function (pair) {
+        var el = document.querySelector(pair[0]);
+        if (el) el.addEventListener('click', function () { track(pair[1]); });
+      });
+    })();
+  </script>
 </body>
 </html>
