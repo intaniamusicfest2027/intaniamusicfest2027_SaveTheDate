@@ -8,12 +8,12 @@
   <meta property="og:title" content="INTANIA MUSIC FEST 2027 · Save the Date">
   <meta property="og:description" content="28 มกราคม 2570 · 17:00–22:00 น. · เพิ่มลงปฏิทินของคุณ">
   <meta name="theme-color" content="#1a0305">
-  <link rel="preload" as="image" href="background.png" fetchpriority="high">
+  <link rel="preload" as="image" href="background.png?v=2" fetchpriority="high">
 
   <!--
     วิธีแก้ไขหน้านี้
     - เปลี่ยนรูปพื้นหลัง  : แทนที่ไฟล์ background.png (ขนาด 1080x1920 px ควรเป็นอัตราส่วนเดียวกัน)
-    - เปลี่ยนรูปปุ่ม      : แทนที่ btn-google-calendar.png และ btn-apple-calendar.png
+    - เปลี่ยนรูปปุ่ม      : แทนที่ btn-google-calendar.png, btn-apple-calendar.png และ btn-instagram.png
     - เปลี่ยนตำแหน่งปุ่ม  : แก้ค่า --x --y --w --h ของ .btn-google / .btn-apple ใน CSS ด้านล่าง (หน่วยเป็นพิกเซลบนผืนผ้าใบ 1080x1920)
     - เปลี่ยนข้อมูลงาน    : แก้ลิงก์ Google Calendar ที่ปุ่มแรก และไฟล์ intania-music-fest-2027.ics สำหรับปุ่มที่สอง
   -->
@@ -48,7 +48,7 @@
       flex: none;
       width: var(--stage-w);
       aspect-ratio: var(--canvas-w) / var(--canvas-h);
-      background: url("background.png") center / 100% 100% no-repeat;
+      background: url("background.png?v=2") center / 100% 100% no-repeat;
     }
 
     /* บนมือถือที่จอยาวกว่ารูป: ต่อขอบล่างของรูปลงไป แล้วค่อย ๆ มืดลง (ไม่แตะ/ไม่ยืดรูปพื้นหลัง) */
@@ -94,8 +94,9 @@
     }
 
     /* พิกัดปุ่ม (px บนผืนผ้าใบ 1080x1920) */
-    .btn-google { --x: 112; --y: 1261; --w: 852; --h: 122; }
-    .btn-apple  { --x: 112; --y: 1499; --w: 857; --h: 122; }
+    .btn-google    { --x: 116; --y: 1189; --w: 852; --h: 122; }
+    .btn-apple     { --x: 116; --y: 1427; --w: 857; --h: 122; }
+    .btn-instagram { --x: 198; --y: 1624; --w: 702; --h: 163; }
 
     /* สำหรับโปรแกรมอ่านหน้าจอ */
     .sr-only {
@@ -110,7 +111,7 @@
       var show = function () { document.documentElement.classList.add('ready'); };
       var img = new Image();
       img.onload = img.onerror = show;
-      img.src = 'background.png';
+      img.src = 'background.png?v=2';
       setTimeout(show, 6000);
     })();
   </script>
@@ -132,6 +133,14 @@
        href="intania-music-fest-2027.ics"
        aria-label="Add to your Apple Calendar">
       <img src="btn-apple-calendar.png" alt="Add to your Apple Calendar" width="857" height="122" draggable="false">
+    </a>
+
+    <!-- ปุ่ม Instagram: เปิดหน้า Instagram ของงาน (บนมือถือจะเด้งเข้าแอป Instagram ถ้ามี) -->
+    <a class="btn btn-instagram"
+       href="https://www.instagram.com/intaniamusicfest?exln=MTl4c3I3M3R5aGx2Zw%3D%3D&amp;utm_source=qr"
+       target="_blank" rel="noopener"
+       aria-label="Instagram: intaniamusicfest">
+      <img src="btn-instagram.png" alt="IG: intaniamusicfest" width="702" height="163" draggable="false">
     </a>
   </main>
   <div class="fill" aria-hidden="true"></div>
